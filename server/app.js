@@ -11,6 +11,8 @@ io.on('connection', function(client){
   })
 });
 
-server.listen(3000, function() {
+const port = process.env.PORT || 3000;
+
+server.listen(port, function() {
   console.log('Server run on 3000')
 })
