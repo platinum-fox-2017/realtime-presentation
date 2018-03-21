@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Slider</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    #main {
+      height: 100vh;
+      background-color: #e56464;
+    }
+  </style>
+</head>
+<body>
+  <div id="main"></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script>
+  let socket = io.connect('http://localhost:3000');
+
+  socket.on('color', (code) => {
+    $('#main').css('background-color', code);
+  });
+
+  window.addEventListener('keypress', (e) => {
+    console.log('---', e.keyCode);
+    if (e.keyCode === 38) {
+      socket.emit('color', '#e56464')
+    }
+    if (e.keyCode === 37) {
+      socket.emit('color', '#a32424')
+    }
+    if (e.keyCode === 39) {
+      socket.emit('color', '#5c0909')
+    }
+    if (e.keyCode === 40) {
+      socket.emit('color', '#200000')
+    }
+  });
+
+</script>
+</html>
