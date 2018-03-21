@@ -1,0 +1,14 @@
+/* Theme */
+
+.frontend {
+	background: #FFEB3B;
+	color: #1E1E1E;
+}
+
+.icons-social-frontend a {
+	color: #1E1E1E;
+}
+
+.icons-social-frontend a svg path{
+	fill: #1E1E1E;
+}

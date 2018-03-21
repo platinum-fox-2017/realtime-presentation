@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Fullpage</title>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/theme.css" />
+    <link rel="stylesheet" type="text/css" href="/css/theme-backend.css" />
+    <link rel="stylesheet" type="text/css" href="/css/theme-frontend.css" />
+    <link href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+  </head>
+  <body>
+  <div id="fullpage">
+    <div class="section">
+      <main>
+        <div class="intro">Hello, I'm Haidar!</div>
+        <div class="tagline"> Fullstack Developer since 2014 |  Writer on Medium </div>
+        <!-- Find your icons from here - https://fontawesome.com/icons?d=gallery&s=brands -->
+        <div class="icons-social">
+          <a target="_blank" href="https://github.com/haidarafif0809"><i class="fab fa-github"></i></a>
+          <a target="_blank" href="https://twitter.com/haidarafif14"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" href="https://facebook.com/haidar.dude"><i class="fab fa-facebook"></i></a>
+          <a target="_blank" href="https://www.linkedin.com/in/haidar-afif-maulana-0b2842a6"><i class="fab fa-linkedin"></i></a>
+          <a target="_blank" href="https://medium.com/@haidarafifmaulana"><i class="fab fa-medium"></i></a>
+        </div>
+      </main>
+    </div>
+    <div class="section">
+      <main class="backend">
+        <div class="intro">I'm Backend Developer</div>
+        <div class="tagline"> Fullstack Developer since 2014 |  Writer on Medium </div>
+        <!-- Find your icons from here - https://fontawesome.com/icons?d=gallery&s=brands -->
+        <div class="icons-social icons-social-backend">
+          <a  href="#"><i class="fab fa-node"></i></a>
+          <a  href="#"><i class="fab fa-node-js"></i></a>
+          <a  href="#"><i class="fab fa-php"></i></a>
+          <a  href="#"><i class="fab fa-laravel"></i></a>
+          <a  href="#"><i class="fab fa-google"></i></a>
+          <a  href="#"><i class="fab fa-aws"></i></a>
+        </div>
+      </main>
+    </div>
+    <div class="section">
+      <main class="frontend">
+        <div class="intro">Also Frontend Developer</div>
+        <div class="tagline"> Fullstack Developer since 2014 |  Writer on Medium </div>
+        <!-- Find your icons from here - https://fontawesome.com/icons?d=gallery&s=brands -->
+        <div class="icons-social icons-social-frontend">
+          <a  href="#"><i class="fab fa-html5"></i></a>
+          <a  href="#"><i class="fab fa-js"></i></a>
+          <a  href="#"><i class="fab fa-css3"></i></a>
+          <a  href="#"><i class="fab fa-vuejs"></i></a>
+          <a  href="#"><i class="fab fa-react"></i></a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script
+			  src="https://code.jquery.com/jquery-3.3.1.slim.js"
+			  integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+			  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/js/jquery.fullPage.js"></script>
+  <script type="text/javascript" src="/js/jquery.fullpage.extensions.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js" charset="utf-8"></script>
+  <script charset="utf-8">
+    let host = 'http://remote-api.geekosta.com';
+    if(location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
+      host = 'http://localhost:3000';
+    } 
+    let socket =  io.connect(host);
+    $(document).ready(function() {
+      $('#fullpage').fullpage({
+        afterLoad: function(anchorLink, index){
+            
+          socket.emit('move-slide',index);
+        },
+      });
+    });
+    socket.on('move-slide', function(data){
+      $.fn.fullpage.moveTo(data);
+    })
+  </script>
+
+  </body>
+</html>
