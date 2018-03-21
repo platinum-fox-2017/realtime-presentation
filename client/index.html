@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="scripts/jquery.fullPage.css" />
+
+    <title>Real Time Presentation</title>
+</head>
+
+<body>
+
+    <!-- <div id="fullpage">
+        <div class="section">
+            <div class="slide" data-anchor="slide1">
+                <img src="img/bg1.jpg" alt="" srcset="">
+            </div>
+            <div class="slide" data-anchor="slide2">
+                <img src="img/bg2.jpg" alt="" srcset="">
+            </div>
+            <div class="slide" data-anchor="slide3">
+                <img src="img/bg3.jpg" alt="" srcset="">
+            </div>
+            <div class="slide" data-anchor="slide4">
+                <img src="img/bg4.jpg" alt="" srcset="">
+            </div>
+        </div>
+    </div> -->
+
+    <h2 class="w3-center">Manual Slideshow</h2>
+
+    <div class="w3-content w3-display-container">
+        <img class="mySlides" src="img/bg1.jpg" style="width:100%">
+        <img class="mySlides" src="img/bg2.jpg" style="width:100%">
+        <img class="mySlides" src="img/bg3.jpg" style="width:100%">
+        <img class="mySlides" src="img/bg4.jpg" style="width:100%">
+
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.fullPage.js"></script>
+<!-- <script>
+    $(document).ready(function () {
+        $('#fullpage').fullpage();
+    });
+</script> -->
+
+<script>
+    var slideIndex = 0
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        let socket = io.connect('http://localhost:3000/')
+        const d = showDivs(slideIndex += n)
+        socket.emit('slide', {
+            number: slideIndex
+        })
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = x.length
+        }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+</script>
+
+<script>
+    let socket = io.connect('http://localhost:3000/')
+    socket.on('slide', (number) => {
+        console.log(number)
+        slideIndex = number
+        showDivs(slideIndex)
+    })
+</script>
+
+
+
+</html>
