@@ -68,7 +68,11 @@
   <script type="text/javascript" src="/js/jquery.fullpage.extensions.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js" charset="utf-8"></script>
   <script charset="utf-8">
-    let socket =  io.connect('http://localhost:3000');
+    let host = 'http://remote-api.geekosta.com';
+    if(location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
+      host = 'http://localhost:3000';
+    } 
+    let socket =  io.connect(host);
     $(document).ready(function() {
       $('#fullpage').fullpage({
         afterLoad: function(anchorLink, index){
