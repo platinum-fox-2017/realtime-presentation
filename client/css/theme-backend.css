@@ -1,0 +1,14 @@
+/* Theme */
+
+.backend {
+	background: #FFFF;
+	color: #AF3D4E;
+}
+
+.icons-social-backend a {
+	color: #AF3D4E;
+}
+
+.icons-social-backend a svg path{
+	fill: #AF3D4E;
+}
