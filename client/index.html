@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/jquery.fullpage.css" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Realtime Slide</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/vendors/jquery.easings.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/vendors/scrolloverflow.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/jquery.fullpage.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+</head>
+<style>
+
+html, body {
+  font: 'Open Sans', 'Helvetica', sans-serif;
+  font-size: 50px;
+  font-weight: lighter
+}
+#section0 {
+  background-color: bisque;
+  text-align:center;
+  font-size: 3em;
+  position:relative;
+}
+
+#first {
+  background-color: red;
+}
+#second {
+  background-color: yellow;
+}
+#third {
+  background-color: blue;
+}
+#fourth {
+  background-color: black;
+}
+#fifth {
+  background-color: aqua;
+  text-align: center;
+}
+
+</style>
+<body>
+  <div id="fullpage">
+    <div class="section" id="section0">
+      <div class="slide" id="first">
+        <h1>hello</h1>
+      </div>
+      <div class="slide" id="second">
+        <h1>world</h1>
+      </div>
+      <div class="slide" id="third">
+        <h3>trial</h3>
+      </div>
+    </div>
+    <div class="section" id="section1">
+      <div class="slide" id="fifth">combat</div>
+    </div>
+  </div>
+</body>
+<script>
+$(document).ready(function() {
+  $('#fullpage').fullpage()
+  
+  let socket = io.connect('http://localhost:3000')
+  socket.on('welcome', () => {
+    console.log('client connected')
+  })
+  
+  document.addEventListener('keyup', (e) => {
+    switch (e.keyCode){
+      case 37:
+        changeDirection('left')
+        break
+      case 38:
+        changeDirection('up')
+        break
+      case 39:
+        changeDirection('right')
+        break
+      case 40:
+        changeDirection('down')
+        break
+    }
+  })
+
+  function changeDirection(direction) {
+    socket.emit('direction', direction)
+  }
+
+  socket.on('changedir', (dir) => {
+    console.log(dir)
+    switch (dir) {
+      case 'right':
+        $.fn.fullpage.moveSlideRight();
+        break
+      case 'left':
+        $.fn.fullpage.moveSlideLeft();
+        break
+      case 'up':
+        $.fn.fullpage.moveSectionUp();
+        break
+      case 'down':
+        $.fn.fullpage.moveSectionDown();
+        break
+        
+    }
+    navigation: true
+  })
+
+  });
+
+</script>
+</html>
