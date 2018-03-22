@@ -3,10 +3,307 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>client</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/jquery.fullpage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <style lang="css">
+      #section0 {
+        background: #b82e8a;
+      }
+      #section1 {
+        background: #66ffcc;
+      }
+      #section2 {
+        background: #bfff00;
+      }
+      #section3{
+        background: #ff5c33;
+      }
+      .fp-controlArrow.fp-prev {
+        margin-left: 1.5em;
+      }
+      .fp-controlArrow.fp-next {
+        margin-right: 1.5em;
+      }
+      .arrowUp,
+      .arrowDown{
+          position:fixed;
+          z-index:99;
+          cursor: pointer;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          margin-left: -38px;
+          left: 50%;
+      }
+      .arrowDown{
+          bottom: 20px;
+          border-width: 38.5px 34px 0 38.5px;
+          border-color: #fff transparent transparent transparent;
+      }
+      .arrowUp{
+          top: 20px;
+          border-width: 0 38.5px 34px 38.5px;
+          border-color: transparent transparent #fff transparent;
+      }
+    </style>
+    <title>Simple Chat</title>
   </head>
   <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+
+    <div id="fullpage" class="">
+      <div class="section" id="section0">
+        <div class="slide" id="slideA">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 01
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 01
+                </h2>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 01
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 02
+                </h2>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 01
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 03
+                </h2>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 01
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 04
+                </h2>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="section" id="section1">
+        <div class="slide">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 02
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 01
+                </h2>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 02
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 02
+                </h2>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="section" id="section2">
+        <div class="slide">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 03
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 01
+                </h2>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 03
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 02
+                </h2>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="section" id="section3">
+        <div class="slide">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 04
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 01
+                </h2>
+              </div>
+            </div>
+            <div class="hero-body">
+              <form class="" action="">
+                <input id="input" type="text" name="" value="">
+                <button type="button" name="button" id="buttonMsg">Send</button>
+              </form>
+              <ul id="messages">
+              </ul>
+            </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="hero ">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  SECTION 04
+                </h1>
+                <h2 class="subtitle">
+                  HANGAR 02
+                </h2>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.6/jquery.fullpage.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#fullpage').fullpage({
+      		navigation: true,
+          controlArrows: true
+        })
+      })
+      console.log($.fn)
+    </script>
+    <script type="text/javascript">
+      const localhost = 'http://localhost:3000'
+      const socket = io.connect(localhost)
+
+      let input = $('#input')
+      let button = $('#buttonMsg')
+
+      button.on('click', () => {
+        console.log('sending message ' + input.val());
+        newMessage(input.val())
+        socket.emit('message', {message: input.val()})
+      })
+
+      socket.on('welcome', (data) => {
+        console.log(data.message);
+      })
+
+      socket.on('message', (data) => {
+        console.log(data.message);
+        newMessage(data.message)
+      })
+
+      window.addEventListener('keydown', function (event) {
+        if (event.defaultPrevented) {
+          return
+        }
+        switch (event.key) {
+          case 'ArrowDown':
+            socket.emit('ArrowDown', {direction: 'Down'})
+            break
+          case 'ArrowUp':
+            socket.emit('ArrowUp', {direction: 'Up'})
+            break
+          case 'ArrowLeft':
+            socket.emit('ArrowLeft', {direction: 'Left'})
+            break
+          case 'ArrowRight':
+            socket.emit('ArrowRight', {direction: 'Right'})
+            break
+          default: return
+        }
+
+        event.preventDefault()
+      }, true)
+      socket.on('ArrowPress', function(val) {
+        console.log(val.direction);
+        if (val) {
+          switch (val.direction) {
+            case 'Up':
+              // $(document).trigger(jQuery.Event('keypress', {keyCode: 38, which: 38}))
+              $.fn.fullpage.moveSectionUp()
+              break
+            case 'Down':
+              // $(document).trigger(jQuery.Event('keypress', {keyCode: 40, which: 40}))
+              $.fn.fullpage.moveSectionDown()
+              break
+            case 'Left':
+              // $(document).trigger(jQuery.Event('keypress', {keyCode: 37, which: 37}))
+              $.fn.fullpage.moveSlideLeft()
+              // $('.fp-controlArrow.fp-prev ')[0].click()
+              break
+            case 'Right':
+              // $(document).trigger(jQuery.Event('keypress', {keyCode: 39, which: 39}))
+              $.fn.fullpage.moveSlideRight()
+              break
+            default:
+          }
+        }
+      })
+    </script>
+    <script type="text/javascript">
+      function newMessage (message) {
+
+        let list = `<li><p>${message}</p></li>`
+        console.log(list);
+        $('#messages').append(list)
+      }
+    </script>
   </body>
 </html>

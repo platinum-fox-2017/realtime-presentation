@@ -31,6 +31,31 @@ io.on('connection', (socket)=> {
     socket.broadcast.emit('message', {message: data.message})
   })
 
+  socket.on('ArrowUp', (data) => {
+    let direction = data.direction
+    socket.emit('ArrowPress', {direction: direction})
+    socket.broadcast.emit('ArrowPress', {direction: direction})
+    console.log(direction);
+  })
+  socket.on('ArrowDown', (data) => {
+    let direction = data.direction
+    socket.emit('ArrowPress', {direction: direction})
+    socket.broadcast.emit('ArrowPress', {direction: direction})
+    console.log(direction);
+  })
+  socket.on('ArrowLeft', (data) => {
+    let direction = data.direction
+    socket.emit('ArrowPress', {direction: direction})
+    socket.broadcast.emit('ArrowPress', {direction: direction})
+    console.log(direction);
+  })
+  socket.on('ArrowRight', (data) => {
+    let direction = data.direction
+    socket.emit('ArrowPress', {direction: direction})
+    socket.broadcast.emit('ArrowPress', {direction: direction})
+    console.log(direction);
+  })
+
 })
 /**
  * Listen on provided port, on all network interfaces.
