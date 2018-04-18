@@ -48,10 +48,10 @@
         <div class="container">
             <label for="message">Message:</label>
             <input type="text" class="form-control" id="message">
-            <button type="button" class="btn btn-dark" id="message" @click="randomWord">Broadcast</button>
+            <button type="button" class="btn btn-dark" id="message">Broadcast</button>
             <hr>
-            <h1>{{clickCount}}</h1>
-            <h1>{{gameOver}}</h1>
+            <!-- <h1>{{clickCount}}</h1> -->
+            <!-- <h1>{{gameOver}}</h1> -->
             <hr>
             <ul id="messages">
                 
@@ -93,7 +93,7 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 <script>
-    let socket = io.connect('http://localhost:3000')
+    let socket = io('http://localhost:3000')
     socket.on('hello', () => console.log('Connected from client'))
     socket.on('message', (message) => {
         $('#messages').append($('<li>').text(message))
@@ -121,6 +121,13 @@
             message: inputMessage.value
         })
         inputMessage.value = ""
+    })
+
+    inputMessage.addEventListener('keyup', function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.querySelector('button#message').click()
+        }
     })
 
     buttonCarrouselNext.addEventListener('click', () => {
